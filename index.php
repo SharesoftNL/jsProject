@@ -70,7 +70,7 @@
         <script type="text/javascript" src="contentModule.js"></script>
         <script type="text/javascript" src="contentIntroModule.js"></script>
         <script type="text/javascript" src="contentItemsModule.js"></script>
-        <script type="text/javascript" src="jsProject/jsProject-min.js"></script>
+        <script type="text/javascript" src="./src/jsProject/jsProject-min.js"></script>
         
     </head>
     <body>

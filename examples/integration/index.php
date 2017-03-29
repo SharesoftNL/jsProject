@@ -45,7 +45,7 @@
         <script type="text/javascript" src="../../languageSelectionModule.js"></script>
         <script type="text/javascript" src="../../languageSelectionItemModule.js"></script>
         <script type="text/javascript" src="contentModule.js"></script>
-        <script type="text/javascript" src="../../jsProject/jsProject-min.js"></script>
+        <script type="text/javascript" src="../../src/jsProject/jsProject-min.js"></script>
         
     </head>
     <body>

@@ -15,4 +15,4 @@ It has a tiny code base that can be easily adapted to your own needs.
 
 Want to see more:
 
-https://sharesoft.nl/en/Blog_JsProject
+https://www.sharesoft.nl/github/jsProject

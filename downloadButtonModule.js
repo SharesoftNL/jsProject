@@ -35,7 +35,7 @@
             'id'                            :   self.parentId + 'downloadButton', // string: id
             'element'                       :   'a',                    // string: html element type 
             'target'                        :   '_blank',               // html target 
-            'href'                          :   'jsProject.zip',        // a href
+            'href'                          :   'https://github.com/SharesoftNL/jsProject/blob/master/src/jsProject/jsProject-min.js',        // a href
             'display'                       :   'inline-block',         // html href
             'text'                          :   'download',             // string: text 
             'fontSize'                      :   '1.0em',                // css font size 

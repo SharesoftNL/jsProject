@@ -1,152 +1,62 @@
 /* 
- *  Project: jsProject 
+ *  Project: sharesoft 
  * 
  *  File: valuesModule.js
  * 
- *  Last revision: 10-03-2017
+ *  Purpose: 
+ *      creates the jsProject values
+ *  
+ *  Last Revision:  04-12-2016
  * 
- * Purpose:  this module controls access to global values for the application
- *           the values are mutable declarations which have global scope    
- *           values are stored within a group
- *           the module will add the functions:
- *               addValue        create a new global value
- *               addValueList    create a list of global values
- *               getValue        get a value
- *               setValue        set a value
- *           to the jsProject Module
- * 
- * Usage:  
- *           jsProject.getValue( string name, string group )
- *           jsProject.addValueList( array[string id, misc value,..], string group )
- *           jsProject.getValue( string name, string group )
- *           jsProject.setValue( string name, string group, misc value )
- *
  *  Author: Sharesoft
  *  Web: www.sharesoft.nl 
  *  Mail: info@sharesoft.nl 
  *  GitHub: SharesoftNL 
  * 
- *  Copyright (C) 2017 Sharesoft 
- *  GNU General Public License 3+ 
- *  see <http://www.gnu.org/licenses/>
- */
+*/
 
 // create module function
-( function( jsProject ){
+( function( sharesoft ){
 
-    // FUNCTION: valuesModule( void ) void
+    // MODULE: valuesModule( void ) void
     
-    jsProject.valuesModule = function( ) {
+    sharesoft.valuesModule = function( ) {
         // PRIVATE:
         
         // MEMBERS
-        var self = this;                                    // object: self
-        self.MODULE = 'valuesModule';                       // string: module
-        self.debugOn = false;                               // boolean: debug
-        self.groups = {};                                   // json: groups
+        var self = this;                            // object: self
+        self.MODULE = 'valuesModule';               // string: module
+        self.debugOn = false;                       // boolean: debugOn
+        self.values = [                             // json[ json, json, json..]: values
+        ];                                          // done json[ json, json, json..]: values
         // DONE MEMBERS
         
         // FUNCTIONS
         self.construct = function() {
         // FUNCTION: construct( void ) void
-        
+            
             // debug info
             self.debug( 'construct' );
+            
+            // add values
+            self.addValues();
+            
+        // DONE FUNCTION: construct( void ) void
+        };
+        self.addValues = function() {
+        // FUNCTION: addValues( void ) void
 
-            // add extensions 
-            self.addApplicationsExtensions();
-                        
-        };
-        self.addApplicationsExtensions = function( ){
-        // FUNCTION: addApplicationsExtensions( void ) void
-        
-            // add functions to application 
-            jsProject.addValue = self.addValue;
-            jsProject.addValueList = self.addValueList;
-            jsProject.getValue = self.getValue;
-            jsProject.setValue = self.setValue;
-            // done add functions to application 
-            
-        // DONE FUNCTION: addApplicationsExtensions( void ) void
-        };
-        // add a value according to id
-        self.addValue = function( id, group, value ) {
-        // FUNCTION: addValue( string: value, string: group, json: value ) void
-        
             // debug info
-            self.debug( 'addValue: ' + 'id:' + id + ', group, :' + group + ', value:' + value );
+            self.debug( 'addValues' );
             
-            // check if the group exists
-            if( self.groups[group] === undefined ){
-                // create the group
-                self.groups[group] = {};
-            }    
-            // value exists
-            if( self.groups[group][id] !== undefined ){
-                // debug info
-                self.debug( 'add value warning value already exists id: ' +  id );
+            // loop over values
+            for( var i = 0; i < self.values.length; i++ ) {
+                // add the values for the app to the project
+                jsProject.addValue( self.values[i]["valueName"], self.values[i]["groupName"], self.values[i]["value"] );
             }
-            else {
-                // add the value
-                self.groups[group][id] = value;
-            }
-            // done value exists
+            // done loop over values
             
-        // DONE FUNCTION: addValue( string: value, string: group, json: value ) void
-        };
-        self.addValueList = function( valueList, group ) {
-        // FUNCTION: addValueList( json: valueList, string: group ) void
-        
-            // debug info
-            self.debug( 'addValueList: group, :' + group );
-            
-            // loop over valueList
-            for ( var key in valueList ) {
-                // add value
-                self.addValue( key, group, valueList[key] );
-            }                
-            // done loop over valueList
-            
-        // DONE FUNCTION: addValueList( json: valueList, string: group ) void
-        };
-        self.getValue = function( id, group ) {
-        // FUNCTION: getValue( string: id, string: group ) var
-            
-            // debug info
-            self.debug( 'getValue: ' + 'id:' + id + ', group, :' + group );
-            
-            // id exists
-            if( self.groups[group][id] !== undefined ){
-                // return the value
-                return self.groups[group][id];
-            }
-            // done id exists
-            
-            // debug info
-            self.debug( 'get value error value not found id: ' +  id );
-            
-            // done with error
-            return false;
-            
-        // DONE FUNCTION: getValue( string: id, string: group ) var
-        };
-        self.setValue = function( id, group, value ) {
-        // FUNCTION: setValue( string: id, string: group, var: value ) void
-        
-            // debug info
-            self.debug( 'setValue: ' + 'id:' + id + ', group, :' + group + ', value:' + value );
-            // check if the value existst
-            if( self.groups[group][id] !== undefined ){
-                // set the value
-                self.groups[group][id] = value;
-            }
-            // value not found error
-            else if( self.debugOn ) {
-                // debug info
-                self.debug( 'set value error value not found id: ' +  id );
-            }
-            
-        // DONE FUNCTION: setValue( string: id, string: group, var: value ) void
+        // DONE FUNCTION: addValues( void ) void
         };
         self.debug = function( message ) {
         // FUNCTION: debug( string: message ) void
@@ -154,7 +64,7 @@
             // debug on
             if( self.debugOn ) {
                 // call global debug
-                jsProject.debug( self.FUNCTION + ' ' + message );
+                jsProject.debug( self.MODULE + ' ' + message );
             }
             // done debug on
             
@@ -171,6 +81,6 @@
         };
         // DONE PUBLIC
     };
-    // DONE FUNCTION: valuesModule( void ) void 
-})( jsProject );
+    // DONE MODULE: valuesModule( sharesoft ) void
+})( sharesoft );
 // done create module function

@@ -32,7 +32,7 @@
         self.debugOn = true;                                // boolean: debug
         self.nextProcesId = 0;                              // integer: next proces id
         self.errorCount = 0;                                // integer: error count
-        self.maxRecalls = 3;                                // integer: max recalls
+        self.maxRecalls = 0;                                // integer: max recalls
         self.processes = {};                                // json: processes
         self.downloadCallback = null;                       // function: downloadCallback
         self.header = null;                                 // header
